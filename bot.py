@@ -212,6 +212,10 @@ dp.add_handler(CommandHandler("link", group_link))
 dp.add_handler(MessageHandler(Filters.status_update.new_chat_members, welcome))
 dp.add_handler(MessageHandler(Filters.status_update.new_chat_members, check_subscription))
 dp.add_handler(MessageHandler(Filters.text & Filters.group, auto_detect_ads))
+def get_chat_id(update, context):
+    update.message.reply_text(f"Group ID: {update.effective_chat.id}")
+
+dp.add_handler(CommandHandler("id", get_chat_id))
 
 updater.start_polling()
 updater.idle()
